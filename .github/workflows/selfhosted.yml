@@ -23,7 +23,7 @@ jobs:
       - name: Install yarn
         run: |
           echo $PATH
-          npm install yarn --location=global
+          npm install -g yarn
           which yarn
 
       - name: Run yarn install
