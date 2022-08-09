@@ -7,7 +7,7 @@ on:
 
 
 jobs:
-  Normal:
+  SelfHostedRunner:
     runs-on: self-hosted
     steps:
       - name: Clone repo
@@ -21,12 +21,26 @@ jobs:
           node-version: 14.19.3
 
       - name: Install yarn
-        run: |
-          echo $PATH
-          npm install -g yarn
-          which yarn
+        run: npm install -g yarn
 
       - name: Run yarn install
-        run: |
-          which yarn
-          time yarn
+        run: time yarn
+
+  GitHubRunner:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone repo
+        uses: actions/checkout@v3
+        with:
+          ref: self-hosted-runner
+
+      - name: Install node etc
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14.19.3
+
+      - name: Install yarn
+        run: npm install -g yarn
+
+      - name: Run yarn install
+        run: time yarn
