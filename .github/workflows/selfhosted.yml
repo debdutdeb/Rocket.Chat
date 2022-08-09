@@ -20,6 +20,10 @@ jobs:
         with:
           node-version: 14.19.3
 
+      - name: Install yarn
+        run: |
+          npm install yarn --location=global
+
       - name: Run yarn install
         run: |
           time yarn
