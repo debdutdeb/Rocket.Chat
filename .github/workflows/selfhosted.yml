@@ -10,6 +10,16 @@ jobs:
   Normal:
     runs-on: self-hosted
     steps:
-      - name: Sleep for 5 minutes
+      - name: Clone repo
+        uses: actions/checkout@v3
+        with:
+          ref: self-hosted-runner
+
+      - name: Install node etc
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14.19.3
+
+      - name: Run yarn install
         run: |
-          sleep 5m
+          time yarn
