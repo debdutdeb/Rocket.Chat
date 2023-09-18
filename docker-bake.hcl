@@ -12,7 +12,7 @@ target "base" {
 target "monolith" {
 	inherits = ["base"]
 	// XXX probably not
-	dockerfile = "apps/meteor/.docker/Dockerfile",
+	dockerfile = "apps/meteor/.docker/Dockerfile"
 }
 
 target "authorization-service" {
