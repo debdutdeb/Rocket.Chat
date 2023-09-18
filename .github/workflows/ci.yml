@@ -182,10 +182,10 @@ jobs:
       LOWERCASE_REPOSITORY: ${{ needs.release-versions.outputs.lowercase-repo }}
       SERVICES_PUBLISH: 'authorization-service account-service ddp-streamer-service presence-service stream-hub-service'
 
-    strategy:
-      fail-fast: false
-      matrix:
-        type: ['official', 'alpine']
+    # strategy:
+    #   fail-fast: false
+    #   matrix:
+    #     type: ['official', 'alpine']
 
     steps:
       - uses: actions/checkout@v3
@@ -194,7 +194,8 @@ jobs:
           CR_USER: ${{ secrets.DOCKER_USERNAME }}
           CR_PAT: ${{ secrets.DOCKER_PAT }}
           node-version: ${{ needs.release-versions.outputs.node-version }}
-          type: ${{ matrix.type }}
+          # type: ${{ matrix.type }}
+          type: official
 
   # build-gh-docker:
   #   name: 🚢 Build Docker Images for Production
