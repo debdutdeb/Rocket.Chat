@@ -8,7 +8,7 @@ services:
         - linux/arm64
       dockerfile: ${RC_DOCKERFILE}
       context: /tmp/build
-    image: ghcr.io/${LOWERCASE_REPOSITORY}/rocket.chat:${RC_DOCKER_TAG}
+    image: ${LOWERCASE_REPOSITORY}/rocket.chat:${RC_DOCKER_TAG}
     environment:
       - TEST_MODE=true
       - EXIT_UNHANDLEDPROMISEREJECTION=true
@@ -36,7 +36,7 @@ services:
       context: .
       args:
         SERVICE: authorization-service
-    image: ghcr.io/${LOWERCASE_REPOSITORY}/authorization-service:${DOCKER_TAG}
+    image: ${LOWERCASE_REPOSITORY}/authorization-service:${DOCKER_TAG}
     environment:
       - 'MONGO_URL=${MONGO_URL}'
       - 'TRANSPORTER=${TRANSPORTER}'
@@ -55,7 +55,7 @@ services:
       context: .
       args:
         SERVICE: account-service
-    image: ghcr.io/${LOWERCASE_REPOSITORY}/account-service:${DOCKER_TAG}
+    image: ${LOWERCASE_REPOSITORY}/account-service:${DOCKER_TAG}
     environment:
       - MONGO_URL=${MONGO_URL}
       - 'TRANSPORTER=${TRANSPORTER}'
@@ -74,7 +74,7 @@ services:
       context: .
       args:
         SERVICE: presence-service
-    image: ghcr.io/${LOWERCASE_REPOSITORY}/presence-service:${DOCKER_TAG}
+    image: ${LOWERCASE_REPOSITORY}/presence-service:${DOCKER_TAG}
     environment:
       - MONGO_URL=${MONGO_URL}
       - 'TRANSPORTER=${TRANSPORTER}'
@@ -93,7 +93,7 @@ services:
       context: .
       args:
         SERVICE: ddp-streamer
-    image: ghcr.io/${LOWERCASE_REPOSITORY}/ddp-streamer-service:${DOCKER_TAG}
+    image: ${LOWERCASE_REPOSITORY}/ddp-streamer-service:${DOCKER_TAG}
     environment:
       - MONGO_URL=${MONGO_URL}
       - 'TRANSPORTER=${TRANSPORTER}'
@@ -118,7 +118,7 @@ services:
       context: .
       args:
         SERVICE: stream-hub-service
-    image: ghcr.io/${LOWERCASE_REPOSITORY}/stream-hub-service:${DOCKER_TAG}
+    image: ${LOWERCASE_REPOSITORY}/stream-hub-service:${DOCKER_TAG}
     environment:
       - MONGO_URL=${MONGO_URL}
       - 'TRANSPORTER=${TRANSPORTER}'
@@ -137,7 +137,7 @@ services:
       context: .
       args:
         SERVICE: queue-worker
-    image: ghcr.io/${LOWERCASE_REPOSITORY}/queue-worker-service:${DOCKER_TAG}
+    image: ${LOWERCASE_REPOSITORY}/queue-worker-service:${DOCKER_TAG}
     environment:
       - MONGO_URL=${MONGO_URL}
       - 'TRANSPORTER=${TRANSPORTER}'
@@ -156,7 +156,7 @@ services:
       context: .
       args:
         SERVICE: omnichannel-transcript
-    image: ghcr.io/${LOWERCASE_REPOSITORY}/omnichannel-transcript-service:${DOCKER_TAG}
+    image: ${LOWERCASE_REPOSITORY}/omnichannel-transcript-service:${DOCKER_TAG}
     environment:
       - TEST_MODE=true
       - MONGO_URL=${MONGO_URL}
