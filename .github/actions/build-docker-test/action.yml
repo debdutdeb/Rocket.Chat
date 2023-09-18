@@ -55,5 +55,5 @@ runs:
           args+=($SERVICES_PUBLISH)
         fi;
 
-        docker buildx bake -f docker-bake.hcl "${args[@]}" --push
+        docker buildx bake -f docker-bake.hcl monolith --push
 
