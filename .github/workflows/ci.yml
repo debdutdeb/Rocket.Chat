@@ -103,13 +103,6 @@ jobs:
       #     coverage: true
       
       # temporarily download 6.x archive
-      - shell: bash
-        run: |
-          curl -Lo /tmp/archive.tgz https://releases.rocket.chat/latest/download
-      - uses: actions/upload-artifact@v3
-        with:
-          path: /tmp/archive.tgz
-          name: build
 
   build-gh-docker-coverage:
     name: 🚢 Build Docker Images for Testing

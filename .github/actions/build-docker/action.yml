@@ -26,16 +26,10 @@ runs:
         username: ${{ inputs.CR_USER }}
         password: ${{ inputs.CR_PAT }}
 
-    - name: Restore build
-      uses: actions/download-artifact@v3
-      with:
-        name: build
-        path: /tmp/build
-
     - name: Unpack build
       shell: bash
       run: |
-        cd /tmp/build
+        curl -Lo Rocket.Chat.tar.gz https://releases.rocket.chat/latest/download
         tar xzf Rocket.Chat.tar.gz
         rm Rocket.Chat.tar.gz
 
