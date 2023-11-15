@@ -34,6 +34,7 @@ runs:
     - uses: docker/setup-buildx-action@v2
       with:
         driver: docker-container
+        platforms: linux/amd64,linux/arm64
 
     - name: Setup NodeJS
       uses: ./.github/actions/setup-node
@@ -54,4 +55,4 @@ runs:
           args+=($SERVICES_PUBLISH)
         fi;
 
-        docker buildx bake -f docker-compose-ci.yml "${args[@]}" --push
+        docker buildx bake -f docker-compose-ci.yml "${args[@]}" --push --builder 
