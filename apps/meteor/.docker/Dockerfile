@@ -27,8 +27,7 @@ RUN set -e \
 	| xargs -r dpkg-query --search \
 	| cut -d: -f1 \
 	| sort -u \
-	| xargs -r apt-mark manual \
-	&& apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false
+	| xargs -r apt-mark manual
 
 
 COPY --chown=rocketchat:rocketchat . /app
@@ -38,6 +37,12 @@ USER rocketchat
 RUN cd /app/bundle/programs/server \
 	&& if [ "$(uname -m)" = "x86_64" ]; then export METEOR_SKIP_NPM_REBUILD=1; fi \
 	&& npm install --production
+
+USER 0
+
+RUN apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false
+
+USER rocketchat
 
 VOLUME /app/uploads
 
