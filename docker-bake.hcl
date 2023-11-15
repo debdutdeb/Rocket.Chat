@@ -9,12 +9,12 @@ target "base" {
 	//pull = "always"
 }
 
-target "monolith" {
+target "rocketchat" {
 	inherits = ["base"]
 	dockerfile = "apps/meteor/.docker/Dockerfile"
 }
 
-target "monolith-alpine" {
+target "rocketchat-alpine" {
 	inherits = ["base"]
 	dockerfile = "apps/meteor/.docker/Dockerfile.alpine"
 }
