@@ -127,7 +127,6 @@ jobs:
       # we only build and publish the actual docker images if not a PR from a fork
       - uses: ./.github/actions/build-docker
         with:
-          CR_USER: ${{ secrets.DOCKER_USERNAME }}
-          CR_PAT: ${{ secrets.DOCKER_PAT }}
+          username: ${{ secrets.DOCKER_USERNAME }}
+          token: ${{ secrets.DOCKER_PAT }}
           node-version: ${{ needs.release-versions.outputs.node-version }}
-          platform: ${{ matrix.platform }}
