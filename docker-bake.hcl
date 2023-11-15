@@ -3,20 +3,21 @@
 group "default" {targets = []}
 
 target "base" {
-	context = "/tmp/build"
 	platforms = ["linux/amd64", "linux/arm64"]
 	output = ["type=oci"]
+	context = "."
 	//pull = "always"
 }
 
 target "rocketchat" {
 	inherits = ["base"]
-	dockerfile = "./apps/meteor/.docker/Dockerfile"
+	dockerfile = "Dockerfile"
+	context = "/tmp/build"
 }
 
 target "rocketchat-alpine" {
-	inherits = ["base"]
-	dockerfile = "./apps/meteor/.docker/Dockerfile.alpine"
+	inherits = ["rocketchat"]
+	dockerfile = "Dockerfile.alpine"
 }
 
 target "authorization-service" {

@@ -55,5 +55,8 @@ runs:
           args+=($SERVICES_PUBLISH)
         fi;
 
+        cp apps/meteor/.docker/Dockerfile /tmp/build/
+        cp apps/meteor/.docker/Dockerfile.alpine /tmp/build/
+
         docker buildx bake --print -f docker-bake.hcl "${args[@]}"
         docker buildx bake -f docker-bake.hcl "${args[@]}" --push
