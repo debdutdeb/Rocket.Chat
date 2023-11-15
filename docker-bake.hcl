@@ -6,7 +6,7 @@ target "base" {
 	context = "/tmp/build"
 	platforms = ["linux/amd64", "linux/arm64"]
 	output = ["type=oci"]
-	pull = "always"
+	//pull = "always"
 }
 
 target "monolith" {
