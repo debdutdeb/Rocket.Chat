@@ -55,4 +55,4 @@ runs:
           args+=($SERVICES_PUBLISH)
         fi;
 
-        docker buildx bake -f docker-compose-ci.yml "${args[@]}" --push --builder 
+        docker buildx bake -f docker-compose-ci.yml "${args[@]}" --push
