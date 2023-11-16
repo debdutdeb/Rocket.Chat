@@ -2,16 +2,32 @@
 
 group "default" {targets = []}
 
+variable "registry" {
+	default = "docker.io"
+}
+
+variable "tag" {}
+
+variable "repository_owner" {
+	default = "rocketchat"
+}
+
 target "base" {
 	platforms = ["linux/amd64", "linux/arm64"]
 	context = "."
 	pull = true
 }
 
+function "image_full_name" {
+	params = [repo_name]
+	result = "${registry}/${repository_owner}/${repo_name}:${tag}"
+}
+
 target "rocketchat" {
 	inherits = ["base"]
 	dockerfile = "Dockerfile"
 	context = "/tmp/build"
+	tags = [image_full_name("rocket.chat")]
 }
 
 target "rocketchat-alpine" {
@@ -25,6 +41,7 @@ target "authorization-service" {
 	args = {
 		SERVICE = "authorization-service"
 	}
+	tags = [image_full_name("authorization-service")]
 }
 
 target "account-service" {
@@ -41,6 +58,7 @@ target "presence-service" {
 	args = {
 		SERVICE = "presence-service"
 	}
+	tags = [image_full_name("account-service")]
 }
 
 target "ddp-streamer-service" {
@@ -49,6 +67,7 @@ target "ddp-streamer-service" {
 	args = {
 		SERVICE = "ddp-streamer"
 	}
+	tags = [image_full_name("ddp-streamer-service")]
 }
 
 target "stream-hub-service" {
@@ -57,6 +76,7 @@ target "stream-hub-service" {
 	args = {
 		SERVICE = "stream-hub-service"
 	}
+	tags = [image_full_name("stream-hub-service")]
 }
 
 target "queue-worker-service" {
@@ -65,6 +85,7 @@ target "queue-worker-service" {
 	args = {
 		SERVICE = "queue-worker"
 	}
+	tags = [image_full_name("queue-worker-service")]
 }
 
 target "omnichannel-transcript-service" {
@@ -73,4 +94,5 @@ target "omnichannel-transcript-service" {
 	args = {
 		SERVICE = "omnichannel-transcript"
 	}
+	tags = [image_full_name("omnichannel-transcript-service")]
 }
