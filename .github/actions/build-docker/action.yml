@@ -58,5 +58,9 @@ runs:
         cp apps/meteor/.docker/Dockerfile /tmp/build/
         cp apps/meteor/.docker/Dockerfile.alpine /tmp/build/
 
+        export registry=docker.io
+        export tag=$RC_DOCKER_TAG
+        export repository_owner=$LOWERCASE_REPOSITORY
+
         docker buildx bake --print -f docker-bake.hcl "${args[@]}"
         docker buildx bake -f docker-bake.hcl "${args[@]}" --push
