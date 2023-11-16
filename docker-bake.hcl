@@ -4,9 +4,8 @@ group "default" {targets = []}
 
 target "base" {
 	platforms = ["linux/amd64", "linux/arm64"]
-	output = ["type=oci"]
 	context = "."
-	//pull = "always"
+	pull = true
 }
 
 target "rocketchat" {
