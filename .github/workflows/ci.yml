@@ -81,32 +81,9 @@ jobs:
           echo "DOCKER_TAG: ${DOCKER_TAG}"
           echo "gh-docker-tag=${DOCKER_TAG}" >> $GITHUB_OUTPUT
 
-  build:
-    name: 📦 Meteor Build - coverage
-    needs: [release-versions]
-    runs-on: ubuntu-20.04
-
-    steps:
-      - name: Github Info
-        run: |
-          echo "GITHUB_ACTION: $GITHUB_ACTION"
-          echo "GITHUB_ACTOR: $GITHUB_ACTOR"
-          echo "GITHUB_REF: $GITHUB_REF"
-          echo "GITHUB_HEAD_REF: $GITHUB_HEAD_REF"
-          echo "GITHUB_BASE_REF: $GITHUB_BASE_REF"
-          echo "github.event_name: ${{ github.event_name }}"
-          cat $GITHUB_EVENT_PATH
-
-      # - uses: ./.github/actions/meteor-build
-      #   with:
-      #     node-version: ${{ needs.release-versions.outputs.node-version }}
-      #     coverage: true
-      
-      # temporarily download 6.x archive
-
   build-gh-docker-coverage:
     name: 🚢 Build Docker Images for Testing
-    needs: [build, release-versions]
+    needs: [release-versions]
     runs-on: ubuntu-20.04
 
     env:
